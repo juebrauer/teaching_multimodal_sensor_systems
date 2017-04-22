@@ -58,7 +58,7 @@ int main()
       // 4.6 detect persons in frame
       vector<Rect> found, found_filtered;
       double t = (double)getTickCount();
-      hog.detectMultiScale(frame, found, 0, Size(8, 8), Size(32, 32), 1.05, 1.0);
+      hog.detectMultiScale(frame, found, 0, Size(8, 8), Size(32, 32), 1.05, 0.1);
 
       t = (double)getTickCount() - t;
       cout << "detection time = " << (t*1000. / cv::getTickFrequency()) << " ms" << endl;

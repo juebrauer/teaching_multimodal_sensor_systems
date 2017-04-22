@@ -245,7 +245,7 @@ int main()
 
 
       // 4.11 important for imshow() to work
-      waitKey(0);
+      waitKey(1);
 
       // 4.12 next frame
       frame_counter++;
