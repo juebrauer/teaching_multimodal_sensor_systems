@@ -7,6 +7,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="tracking_test_SOLUTION.cpp" />
     <ClCompile Include="tracking_test_START.cpp" />
   </ItemGroup>
 </Project>

@@ -19,7 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="tracking_test_START.cpp" />
+    <ClCompile Include="tracking_test_SOLUTION.cpp" />
+    <ClCompile Include="tracking_test_START.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{EA6B300D-9568-460A-AB84-B93F66736701}</ProjectGuid>
