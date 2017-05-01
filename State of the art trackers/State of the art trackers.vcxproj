@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{75F33842-FC4A-418E-92F5-53460A38789A}</ProjectGuid>
+    <RootNamespace>Stateofthearttrackers</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>V:\01_job\18_src\opencv-master\modules\imgproc\include;V:\01_job\18_src\opencv-master\modules\core\include;V:\01_job\18_src\opencv-master\modules\imgcodecs\include;V:\01_job\18_src\opencv-master\modules\objdetect\include;V:\01_job\18_src\opencv-master\modules\calib3d\include;V:\01_job\18_src\opencv-master\modules\features2d\include;V:\01_job\18_src\opencv-master\modules\highgui\include;V:\01_job\18_src\opencv-master\modules\videoio\include;V:\01_job\18_src\opencv-master\modules\flann\include;V:\01_job\18_src\opencv-master\modules\shape\include;V:\01_job\18_src\opencv-master\modules\video\include;V:\01_job\18_src\opencv_contrib-master\modules\datasets\include;V:\01_job\18_src\opencv_contrib-master\modules\text\include;V:\01_job\18_src\opencv_contrib-master\modules\dnn\include;V:\01_job\18_src\opencv_contrib-master\modules\plot\include;V:\01_job\18_src\opencv-master\modules\ml\include;V:\01_job\18_src\opencv_contrib-master\modules\phase_unwrapping\include;V:\01_job\18_src\opencv_contrib-master\modules\ximgproc\include;V:\01_job\18_src\opencv-master\modules\stitching\include;V:\01_job\18_src\opencv_contrib-master\modules\optflow\include;V:\01_job\18_src\opencv_contrib-master\modules\aruco\include;V:\01_job\18_src\opencv_contrib-master\modules\xfeatures2d\include;V:\01_job\18_src\opencv-master\modules\videostab\include;V:\01_job\18_src\opencv_contrib-master\modules\tracking\include;V:\01_job\18_src\opencv_contrib-master\modules\structured_light\include;V:\01_job\18_src\opencv_contrib-master\modules\stereo\include;V:\01_job\18_src\opencv_contrib-master\modules\rgbd\include;V:\01_job\18_src\opencv_contrib-master\modules\ccalib\include;V:\01_job\18_src\opencv_contrib-master\modules\saliency\include;V:\01_job\18_src\opencv_contrib-master\modules\line_descriptor\include;V:\01_job\18_src\opencv_contrib-master\modules\dpm\include;V:\01_job\18_src\opencv_contrib-master\modules\bioinspired\include;V:\01_job\18_src\opencv-master\modules\superres\include;V:\01_job\18_src\opencv_contrib-master\modules\xobjdetect\include;V:\01_job\18_src\opencv_contrib-master\modules\fuzzy\include;V:\01_job\18_src\opencv_contrib-master\modules\face\include;V:\01_job\18_src\opencv_contrib-master\modules\bgsegm\include;V:\01_job\18_src\opencv_contrib-master\modules\xphoto\include;V:\01_job\18_src\opencv_contrib-master\modules\surface_matching\include;V:\01_job\18_src\opencv_contrib-master\modules\reg\include;V:\01_job\18_src\opencv-master\modules\photo\include;V:\01_job\18_src\opencv-master\modules\world\include;V:\01_job\18_src\opencv-master\include;V:\01_job\18_src\opencv-master\build\3rdparty\ippicv\ippicv_win\include;V:\01_job\18_src\opencv-master\build\3rdparty\ippicv\ippicv_win\..\ippiw_win\include;V:\01_job\18_src\opencv-master\build;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(OPENCV_SELF_BUILT)\build</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;3rdparty\ippicv\ippicv_win\..\ippiw_win\\lib\ia32\ipp_iw.lib;3rdparty\ippicv\ippicv_win\lib\ia32\ippicvmt.lib;lib\Debug\opencv_world320d.lib;3rdparty\lib\Debug\libprotobufd.lib;3rdparty\lib\Debug\libjpegd.lib;3rdparty\lib\Debug\libwebpd.lib;3rdparty\lib\Debug\libpngd.lib;3rdparty\lib\Debug\libtiffd.lib;3rdparty\lib\Debug\libjasperd.lib;3rdparty\lib\Debug\IlmImfd.lib;3rdparty\lib\Debug\zlibd.lib;vfw32.lib;comctl32.lib;setupapi.lib;ws2_32.lib</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(OPENCV_SELF_BUILT)\include</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>V:\01_job\18_src\opencv-master\modules\imgproc\include;V:\01_job\18_src\opencv-master\modules\core\include;V:\01_job\18_src\opencv-master\modules\imgcodecs\include;V:\01_job\18_src\opencv-master\modules\objdetect\include;V:\01_job\18_src\opencv-master\modules\calib3d\include;V:\01_job\18_src\opencv-master\modules\features2d\include;V:\01_job\18_src\opencv-master\modules\highgui\include;V:\01_job\18_src\opencv-master\modules\videoio\include;V:\01_job\18_src\opencv-master\modules\flann\include;V:\01_job\18_src\opencv-master\modules\shape\include;V:\01_job\18_src\opencv-master\modules\video\include;V:\01_job\18_src\opencv_contrib-master\modules\datasets\include;V:\01_job\18_src\opencv_contrib-master\modules\text\include;V:\01_job\18_src\opencv_contrib-master\modules\dnn\include;V:\01_job\18_src\opencv_contrib-master\modules\plot\include;V:\01_job\18_src\opencv-master\modules\ml\include;V:\01_job\18_src\opencv_contrib-master\modules\phase_unwrapping\include;V:\01_job\18_src\opencv_contrib-master\modules\ximgproc\include;V:\01_job\18_src\opencv-master\modules\stitching\include;V:\01_job\18_src\opencv_contrib-master\modules\optflow\include;V:\01_job\18_src\opencv_contrib-master\modules\aruco\include;V:\01_job\18_src\opencv_contrib-master\modules\xfeatures2d\include;V:\01_job\18_src\opencv-master\modules\videostab\include;V:\01_job\18_src\opencv_contrib-master\modules\tracking\include;V:\01_job\18_src\opencv_contrib-master\modules\structured_light\include;V:\01_job\18_src\opencv_contrib-master\modules\stereo\include;V:\01_job\18_src\opencv_contrib-master\modules\rgbd\include;V:\01_job\18_src\opencv_contrib-master\modules\ccalib\include;V:\01_job\18_src\opencv_contrib-master\modules\saliency\include;V:\01_job\18_src\opencv_contrib-master\modules\line_descriptor\include;V:\01_job\18_src\opencv_contrib-master\modules\dpm\include;V:\01_job\18_src\opencv_contrib-master\modules\bioinspired\include;V:\01_job\18_src\opencv-master\modules\superres\include;V:\01_job\18_src\opencv_contrib-master\modules\xobjdetect\include;V:\01_job\18_src\opencv_contrib-master\modules\fuzzy\include;V:\01_job\18_src\opencv_contrib-master\modules\face\include;V:\01_job\18_src\opencv_contrib-master\modules\bgsegm\include;V:\01_job\18_src\opencv_contrib-master\modules\xphoto\include;V:\01_job\18_src\opencv_contrib-master\modules\surface_matching\include;V:\01_job\18_src\opencv_contrib-master\modules\reg\include;V:\01_job\18_src\opencv-master\modules\photo\include;V:\01_job\18_src\opencv-master\modules\world\include;V:\01_job\18_src\opencv-master\include;V:\01_job\18_src\opencv-master\build\3rdparty\ippicv\ippicv_win\include;V:\01_job\18_src\opencv-master\build\3rdparty\ippicv\ippicv_win\..\ippiw_win\include;V:\01_job\18_src\opencv-master\build;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;3rdparty\ippicv\ippicv_win\..\ippiw_win\\lib\ia32\ipp_iw.lib;3rdparty\ippicv\ippicv_win\lib\ia32\ippicvmt.lib;lib\Release\opencv_world320.lib;3rdparty\lib\Release\libprotobuf.lib;3rdparty\lib\Release\libjpeg.lib;3rdparty\lib\Release\libwebp.lib;3rdparty\lib\Release\libpng.lib;3rdparty\lib\Release\libtiff.lib;3rdparty\lib\Release\libjasper.lib;3rdparty\lib\Release\IlmImf.lib;3rdparty\lib\Release\zlib.lib;vfw32.lib;comctl32.lib;setupapi.lib;ws2_32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OPENCV_SELF_BUILT)\build</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(OPENCV_SELF_BUILT)\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="state_of_the_art_tracker_tests.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

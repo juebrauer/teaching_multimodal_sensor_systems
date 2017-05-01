@@ -7,7 +7,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="tracking_test_START.cpp" />
-    <ClCompile Include="tracking_test_SOLUTION_WITH_COLOR.cpp" />
+    <ClCompile Include="state_of_the_art_tracker_tests.cpp" />
   </ItemGroup>
 </Project>
