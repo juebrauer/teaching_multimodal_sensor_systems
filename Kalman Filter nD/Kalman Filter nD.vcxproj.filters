@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Kalman Filter">
+      <UniqueIdentifier>{5cd999ac-36d7-46c7-ad08-09eabc83fb72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools">
+      <UniqueIdentifier>{2a979599-77d6-42fb-b5f2-706e92eda822}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="math_tools.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="mvnrnd.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="kalman_filter_ndim.h">
+      <Filter>Kalman Filter</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="mvnrnd.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="kalman_filter_ndim.cpp">
+      <Filter>Kalman Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="kalman_filter_ndim_demo.cpp" />
+  </ItemGroup>
+</Project>

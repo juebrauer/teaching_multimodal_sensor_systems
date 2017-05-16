@@ -94,7 +94,7 @@ int main(int argc, char **argv)
          if (k == 27) break;
 
          // 4.7 save result image
-         if (1)
+         if (0)
          {
             char fname[500];
             sprintf_s(fname, "V:\\tmp\\%04d.png", frame_save_counter++);
