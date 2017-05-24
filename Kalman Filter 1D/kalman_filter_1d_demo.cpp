@@ -28,7 +28,7 @@
 /// ---
 /// by Prof. Dr. Jürgen Brauer, www.juergenbrauer.org
 
-#define VISUALIZATION true
+#define VISUALIZATION false
 
 #include "opencv2/opencv.hpp"
 
@@ -174,7 +174,7 @@ int main()
 
   double µ_naive_est = µ;
   
-  kalman_filter_1d myFilter(µ, sigma, process_noise, measurement_noise);
+  kalman_filter_1d myFilter(µ, sigma, process_noise, 1.0*measurement_noise);
 
   // prepare random number generator for process noise
   std::default_random_engine generator;

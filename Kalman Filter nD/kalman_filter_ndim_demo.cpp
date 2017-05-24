@@ -34,7 +34,6 @@
 /// By fusing all this pieces of information we can become
 /// better than just believing our noisy 2D position sensor!
 ///
-/// See it and believe it!
 ///
 /// ---
 /// by Prof. Dr. Jürgen Brauer, www.juergenbrauer.org
@@ -172,7 +171,7 @@ int main()
                                      0.0, 10.0);
 
   // 2.3 state transition matrix F: describes the system dynamics
-  cv::Mat F_true = (Mat_<float>(2, 2) << 1.0,  0.0,
+  cv::Mat F_true = (Mat_<float>(2, 2) << 0.95,  0.0,
                                          0.0,  1.0);
   cv::Mat F_model = F_true * 1.0;
 
@@ -196,8 +195,9 @@ int main()
   // 2.6 measurement matrix: describes how states are mapped by our sensors
   //     to measurements
   cv::Mat H_true = (Mat_<float>(2, 2) << 0.98, 0.0,
-                                         0.0, 0.98);
-  cv::Mat H_model = H_true * 1.03;
+                                         0.0, 0.97);
+  cv::Mat H_model = (Mat_<float>(2, 2) << 1.02, 0.0,
+                                          0.0, 0.95);
 
   // 2.7 measurement noise covariance matrix: describes randomness of
   //     measurements per dimension
