@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="1D Kalman Filter">
+      <UniqueIdentifier>{7f520f4e-ba32-4573-b747-5bd41aba2bd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nD Kalman Filter">
+      <UniqueIdentifier>{d85a156a-d043-453b-b5c9-bbdbcca31003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math Help Functions">
+      <UniqueIdentifier>{95fd18fc-efb5-404b-882d-973cc6e54d9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Robot simulator">
+      <UniqueIdentifier>{221bb319-a9dd-416b-ac06-5121c7c50e83}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="kalman_filter_1d.cpp">
+      <Filter>1D Kalman Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="mvnrnd.cpp">
+      <Filter>Math Help Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="kalman_filter_ndim.cpp">
+      <Filter>nD Kalman Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="occupancy_grid.cpp">
+      <Filter>Robot simulator</Filter>
+    </ClCompile>
+    <ClCompile Include="robot.cpp">
+      <Filter>Robot simulator</Filter>
+    </ClCompile>
+    <ClCompile Include="main_simulation.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="kalman_filter_1d.h">
+      <Filter>1D Kalman Filter</Filter>
+    </ClInclude>
+    <ClInclude Include="math_tools.h">
+      <Filter>Math Help Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="mvnrnd.h">
+      <Filter>Math Help Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="kalman_filter_ndim.h">
+      <Filter>nD Kalman Filter</Filter>
+    </ClInclude>
+    <ClInclude Include="occupancy_grid.h">
+      <Filter>Robot simulator</Filter>
+    </ClInclude>
+    <ClInclude Include="robot.h">
+      <Filter>Robot simulator</Filter>
+    </ClInclude>
+    <ClInclude Include="params.h" />
+  </ItemGroup>
+</Project>
