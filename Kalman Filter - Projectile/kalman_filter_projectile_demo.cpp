@@ -45,7 +45,7 @@ int main()
    Mat µ, P, F, B, Q, H, R;
 
    // initial guess of the state
-   µ = (Mat_<float>(4, 1) <<  0.0, 0.0, 0.0, 0.0);
+   µ = (Mat_<float>(4, 1) <<  200.0, 0.0, 300.0, 0.0);
 
    P = (Mat_<float>(4, 4) <<  1.0, 0.0, 0.0, 0.0,
                               0.0, 1.0, 0.0, 0.0,
@@ -73,14 +73,16 @@ int main()
                              0.0, 0.0, 0.0, 1.0);
 
    R = (Mat_<float>(4, 4) << 150.0, 0.0, 0.0, 0.0,
-                             0.0, 50.0, 0.0, 0.0,
-                             0.0, 0.0, 500.0, 0.0,
-                             0.0, 0.0, 0.0, 50.0);
+                             0.0, 500, 0.0, 0.0,
+                             0.0, 0.0, 500, 0.0,
+                             0.0, 0.0, 0.0, 5e4);
 
    kalman_filter_ndim myFilter(µ, P, F, B, Q, H, R);
 
-   // 4. prepare random number generator for measurement noise
+   // 4. prepare random number generator for process &
+   //    measurement noise
    cv::Mat mean_vec = (Mat_<float>(4, 1) << 0, 0, 0, 0);
+   mvnrnd rnd_generator_process_noise = mvnrnd(mean_vec, Q);
    mvnrnd rnd_generator_measurement_noise = mvnrnd(mean_vec, R);
 
 
@@ -104,11 +106,14 @@ int main()
       // vx = vx;      
       // y  = y + vy*dt - (g/2.0)*(dt*dt);
       // vy = vy - g*dt;
-      s = F*s + B*u;
+      Mat process_noise_vec = rnd_generator_process_noise.get_next_random_vector();
+      s = F*s + B*u + process_noise_vec;
 
       // 7.2 get projectile position (px,py) from s
       double px = s.at<float>(0, 0);
       double py = s.at<float>(2, 0);
+      double vx = s.at<float>(1, 0);
+      double vy = s.at<float>(3, 0);
       
 
       // 7.3 if the projectile touches the ground, we stop the simulation
@@ -135,15 +140,23 @@ int main()
       //      measured position (noisy)
       //      KF estimated position      
       circle(world, drawPoint(px, py), cs, CV_RGB(0,0,0), fill);
+      line(world, drawPoint(px, py), drawPoint(px + vx, py - vy), CV_RGB(0,0,0), 1);
 
-      double sx = z.at<float>(0, 0);
-      double sy = z.at<float>(2, 0);
+      double sx  = z.at<float>(0, 0);
+      double svx = z.at<float>(1, 0);
+      double sy  = z.at<float>(2, 0);
+      double svy = z.at<float>(3, 0);
       circle(world, drawPoint(sx, sy), cs, CV_RGB(255,0,0), fill);
+      //line(world, drawPoint(sx,sy), drawPoint(sx + svx, sy - svy), CV_RGB(255, 0, 0), 1);
+
 
       Mat est_s = myFilter.get_current_state_estimate();
-      double est_x = est_s.at<float>(0, 0);
-      double est_y = est_s.at<float>(2, 0);
+      double est_x  = est_s.at<float>(0, 0);
+      double est_vx = est_s.at<float>(1, 0);
+      double est_y  = est_s.at<float>(2, 0);
+      double est_vy = est_s.at<float>(3, 0);
       circle(world, drawPoint(est_x, est_y), cs, CV_RGB(0, 0, 255), fill);
+      line(world, drawPoint(est_x,est_y), drawPoint(est_x+est_vx,est_y-est_vy), CV_RGB(0, 0, 255), 1);
 
       imshow("Ballistic trajectory of a projectile", world);
 
