@@ -124,6 +124,7 @@
   <ItemGroup>
     <ClInclude Include="math_tools.h" />
     <ClInclude Include="mvnrnd.h" />
+    <ClInclude Include="params.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

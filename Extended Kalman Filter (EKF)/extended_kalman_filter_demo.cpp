@@ -21,32 +21,6 @@
 ///
 
 
-////////////////////////////
-// parameters to play with:
-
-// P1:
-// if set to true, naive estimated state will be shown
-#define SHOW_NAIVE_ESTIMATION true
-
-// P2:
-// if set to true, EKF estimated state will be shown
-#define SHOW_EKF_ESTIMATION true
-
-// P3:
-// if set to true, EKF debug information will be displayed
-// on the console
-#define SHOW_DEBUG_INFO true
-
-
-#define COL_GT             CV_RGB(255, 255, 255)
-#define COL_NAIVE          CV_RGB(  0, 255,   0)
-#define COL_MEASUREMENT    CV_RGB(  0, 255, 255)
-#define COL_EKF            CV_RGB(255,   0,   0)
-
-
-////////////////////////////
-
-
 #include "opencv2/core.hpp"
 #include "opencv2/imgproc.hpp"
 #include "opencv2/highgui.hpp"
@@ -60,8 +34,7 @@
 
 #include "mvnrnd.h"               // for random number generator following a n-dimensional normal distribution
 
-#define IMG_WIDTH  800
-#define IMG_HEIGHT 800
+#include "params.h"
 
 
 using namespace cv;
@@ -132,11 +105,9 @@ int main()
 
   // 2.3 process noise covariance matrix: describes randomness of state
   //     transitions per dimension
-  //     here noise in x-coordinate transitions is smaller than
-  //     noise in y-coordinate state transitions
-  cv::Mat Q = (Mat_<float>(3, 3) <<  1.0,   0.0,   0.0,
-                                     0.0, 100.0,   0.0,
-                                     0.0,   0.0, 100.0);
+  cv::Mat Q = (Mat_<float>(3, 3) <<  5.01,   0.0,   0.0,
+                                     0.0,    50.01,  0.0,
+                                     0.0,    0.0,   50.01);
 
   // 2.4 measurement noise covariance matrix: describes randomness of
   //     measurements per dimension
@@ -175,10 +146,9 @@ int main()
     printf("Simulation step : %d\n", simulation_step);
     image = 0;
 
-    ////////////////////////////////////////////////////
+
     // 2. simulate new ground truth state
     //    that is computed by some non-linear function
-    ////////////////////////////////////////////////////
     Mat rnd_vec1 = rnd_generator_process_noise.get_next_random_vector();
     if (SHOW_DEBUG_INFO)
     {
@@ -187,9 +157,9 @@ int main()
     }
     µ_gt = f(µ_gt) + rnd_vec1;
     
-    ///////////////////////////////////
-    // 3. simulate sensor data / vector
-    ///////////////////////////////////
+
+    
+    // 3. simulate sensor data / vector    
     Mat rnd_vec2 = rnd_generator_measurement_noise.get_next_random_vector();    
     Mat gt_measurement_vec = h(µ_gt);
     Mat z = gt_measurement_vec + rnd_vec2;
@@ -203,16 +173,15 @@ int main()
         z.at<float>(0, 0), z.at<float>(1, 0), z.at<float>(2, 0));
     }
 
-    ////////////////////////////////////////////////////
+    
     // 4. update state estimate just based on prediction
     µ_est_predonly = f(µ_est_predonly);
-    ////////////////////////////////////////////////////
+    
 
 
 
-    ///////////////////////////////////////////////////////////////////
-    // 5.1 predict new state using EKF & update error covariance matrix
-    ///////////////////////////////////////////////////////////////////
+    
+    // 5.1 predict new state using EKF & update error covariance matrix    
     µ_est = f(µ_est);
     
     // compute Jacobi matrix of f at location a=µ_est
@@ -226,13 +195,11 @@ int main()
     P = F*P*F.t() + Q;
 
 
-    /////////////////////////////////////////////////////////////////////
-    // 5.2 correct predicted state & covariance matrix using measurement
-    /////////////////////////////////////////////////////////////////////
+    
+    // 5.2 correct predicted state & covariance matrix using measurement    
     cv::Mat y = z - h(µ_est);
 
-    // compute Jacobi matrix of h at location a=µ_est
-    
+    // compute Jacobi matrix of h at location a=µ_est    
     Mat H = (Mat_<float>(3, 3) << 2*µ1,  0.0, 0.0,
                                   0.0,  2*µ2, 0.0,
                                   0.0,   0.0, 2*µ3);
