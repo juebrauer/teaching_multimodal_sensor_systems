@@ -109,8 +109,8 @@ int main()
   //     transitions per dimension
   cv::Mat Q = (Mat_<float>(4, 4) <<  0.01, 0.0, 0.0, 0.0,
                                      0.0, 0.01, 0.0, 0.0,
-                                     0.0, 0.0, 5.0, 0.0,
-                                     0.0, 0.0, 0.0, 5.0);
+                                     0.0, 0.0, 10.0, 0.0,
+                                     0.0, 0.0, 0.0, 10.0);
 
   // 2.4 measurement noise covariance matrix: describes randomness of
   //     measurements per dimension
@@ -206,18 +206,20 @@ int main()
     float µ3 = µ_est.at<float>(2, 0);
     float µ4 = µ_est.at<float>(3, 0);
         
+    
     Mat F = (Mat_<float>(4, 4)
         << 1.0,     1.0 / 200.0, 0.0, 0.0,
            0.0,             1.0, 0.0, 0.0,
            cos(µ2), -µ1*sin(µ2), 0.0, 0.0,
            sin(µ2),  µ1*cos(µ2), 0.0, 0.0);
-
+    
     /*
-    Mat F = (Mat_<float>(4, 4) << 2.0, 0.0, 0.0, 0.0,
+    Mat F = (Mat_<float>(4, 4) << 2.0*µ1, 0.0, 0.0, 0.0,
                                   0.0, 1.0, 3.0, 0.0,
                                   0.0, 2.0, 1.0, 0.0,
-                                  0.0, 0.0, 4.0, 5.0);
-                                  */
+                                  0.0, 0.0, 4.0*µ2, 5.0);
+    */
+
     P = F*P*F.t() + Q;
 
 

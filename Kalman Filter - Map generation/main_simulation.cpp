@@ -118,8 +118,12 @@ int main()
   vector<double> sensor_angles, sensor_distances;
   sensor_angles.push_back(-M_PI/4);
   sensor_angles.push_back(+M_PI/4);
+  sensor_angles.push_back(-M_PI / 2);
+  sensor_angles.push_back(+M_PI /2 );
   sensor_distances.push_back(50);
   sensor_distances.push_back(50);
+  sensor_distances.push_back(150);
+  sensor_distances.push_back(150);
   string  robot_name             = "R2D2";
   int     robot_radius           = 10;                                        // in pixel
   Point2d robot_startpos         = Point(WORLD_HEIGHT / 2, WORLD_WIDTH / 2);  // in pixel

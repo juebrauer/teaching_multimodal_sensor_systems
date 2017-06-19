@@ -105,9 +105,9 @@ int main()
 
   // 2.3 process noise covariance matrix: describes randomness of state
   //     transitions per dimension
-  cv::Mat Q = (Mat_<float>(3, 3) <<  5.01,   0.0,   0.0,
-                                     0.0,    50.01,  0.0,
-                                     0.0,    0.0,   50.01);
+  cv::Mat Q = (Mat_<float>(3, 3) <<  5.0,   0.0,   0.0,
+                                     0.0,    50.0,  0.0,
+                                     0.0,    0.0,  200.0);
 
   // 2.4 measurement noise covariance matrix: describes randomness of
   //     measurements per dimension
@@ -187,11 +187,18 @@ int main()
     // compute Jacobi matrix of f at location a=µ_est
     float µ1 = µ_est.at<float>(0, 0);    
     float µ2 = µ_est.at<float>(1, 0);
-    float µ3 = µ_est.at<float>(2, 0);
+    float µ3 = µ_est.at<float>(2, 0);    
+    
     Mat F = (Mat_<float>(3, 3) <<                              1.0, 0.0, 0.0,
                                   -200.0 * sin(µ1/40.0) * 1.0/40.0, 0.0, 0.0,
-                                   200.0 * cos(µ1/20.0) * 1.0/20.0, 0.0, 0.0);
-    //F = cv::Mat::eye(3,3,CV_32FC1);
+                                   200.0 * cos(µ1/20.0) * 1.0/20.0, 0.0, 0.0);                                   
+    /*
+    Mat F = (Mat_<float>(3, 3) << 1.0, 0.0, 3.0,
+                                  0.0, 2.0, 4.0,
+                                  0.0, 0.0, 5.0
+                                  );
+    */
+
     P = F*P*F.t() + Q;
 
 

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Math tools">
+      <UniqueIdentifier>{49120336-08f4-47a5-b031-b57d93e7b8eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Spaceship">
+      <UniqueIdentifier>{785639be-cba8-4a63-af8e-066358e0180b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Particle Filter">
+      <UniqueIdentifier>{a0264838-b5f6-479d-909b-6184525fd011}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="math_tools.h">
+      <Filter>Math tools</Filter>
+    </ClInclude>
+    <ClInclude Include="mvnrnd.h">
+      <Filter>Math tools</Filter>
+    </ClInclude>
+    <ClInclude Include="random_tools.h">
+      <Filter>Math tools</Filter>
+    </ClInclude>
+    <ClInclude Include="spaceship.h">
+      <Filter>Spaceship</Filter>
+    </ClInclude>
+    <ClInclude Include="particle_filter.h">
+      <Filter>Particle Filter</Filter>
+    </ClInclude>
+    <ClInclude Include="params.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="particle_filter_demo.cpp" />
+    <ClCompile Include="mvnrnd.cpp">
+      <Filter>Math tools</Filter>
+    </ClCompile>
+    <ClCompile Include="spaceship.cpp">
+      <Filter>Spaceship</Filter>
+    </ClCompile>
+    <ClCompile Include="particle_filter.cpp">
+      <Filter>Particle Filter</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -281,7 +281,6 @@ void Robot::compute_sensor_values(Mat world)
     }
 
 
-    //////////////////////////////////////////////////////////
     // 2.7 Update Kalman filter estimate for this sensor value
 
     
@@ -307,8 +306,6 @@ void Robot::compute_sensor_values(Mat world)
     // now get the Kalman filter estimate for the noisy sensor value
     double sensor_value_kf = kf_for_current_sensor->get_current_state_estimate();
 
-    //
-    //////////////////////////////////////////////////////////
 
 
 
@@ -370,7 +367,7 @@ void Robot::update(Mat world)
     
 
   // 2. update occupancy grids by information of all sensors
-  for (int sensor_nr = 0; sensor_nr <= 1; sensor_nr++)
+  for (int sensor_nr = 0; sensor_nr < sensor_angles.size(); sensor_nr++)
   {
     Point2d sensor_ray_dir_vec;
     
@@ -611,8 +608,8 @@ void Robot::setup_real_and_Kalman_filter_model_matrices()
 
   // 1.5 process noise covariance matrix: describes randomness of state
   //     transitions per dimension
-  cv::Mat Q_true = (Mat_<double>(3, 3) <<   0.01, 0.0,  0.0,
-                                            0.0,  0.01, 0.0,
+  cv::Mat Q_true = (Mat_<double>(3, 3) <<   1.0, 0.0,  0.0,
+                                            0.0,  1.0, 0.0,
                                             0.0,  0.0,  0.01);
 
 
