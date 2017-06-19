@@ -236,44 +236,54 @@ class Robot(Particle):
 
 # ------------------------------------------------------------------------
 
+
+# 1. generate a world from the maze_data structure defined above
 world = Maze(maze_data)
 world.draw()
 
-# initial distribution assigns each particle an equal probability
+# 2. generate PARTICLE_COUNT many particles
 particles = Particle.create_random(PARTICLE_COUNT, world)
+
+# 3. generate a robot
 robbie = Robot(world)
 
+# 4. simulation loop
 while True:
-    # Read robbie's sensor
+
+    # 4.1 Read Robbie's sensor:
+    #     i.e., get the distance r_d to the nearest beacon
     r_d = robbie.read_sensor(world)
 
-    # Update particle weight according to how good every particle matches
-    # robbie's sensor reading
+    # 4.2 Update particle weight according to how good every particle matches
+    #     Robbie's sensor reading
     for p in particles:
         if world.is_free(*p.xy):
+            # get distance of particle to nearest beacon
             p_d = p.read_sensor(world)
+            
+            # "compare" sensor distance r_d and particle distance p_d
             p.w = w_gauss(r_d, p_d)
         else:
             p.w = 0
 
-    # ---------- Try to find current best estimate for display ----------
+    # 4.3 Compute weighted mean of particles (gray circle)
     m_x, m_y, m_confident = compute_mean_point(particles)
 
-    # ---------- Show current state ----------
+    # 4.4 show particles, show mean point, show Robbie
     world.show_particles(particles)
     world.show_mean(m_x, m_y, m_confident)
     world.show_robot(robbie)
 
-    # ---------- Shuffle particles ----------
+    # 4.5 Resampling follows here:
     new_particles = []
 
-    # Normalise weights
+    # 4.5.1 Normalise weights
     nu = sum(p.w for p in particles)
     if nu:
         for p in particles:
             p.w = p.w / nu
 
-    # create a weighted distribution, for fast picking
+    # 4.5.2 create a weighted distribution, for fast picking
     dist = WeightedDistribution(particles)
 
     for _ in particles:
@@ -288,13 +298,14 @@ while True:
 
     particles = new_particles
 
-    # ---------- Move things ----------
+    # 4.5.3 Move Robbie in world (randomly)
     old_heading = robbie.h
     robbie.move(world)
+    
+    # 4.5.4 Compute Robbie's turning action done
     d_h = robbie.h - old_heading
 
-    # Move particles according to my belief of movement (this may
-    # be different than the real movement, but it's all I got)
+    # 4.5.5 Move ALL particles according to belief of movement
     for p in particles:
         p.h += d_h # in case robot changed heading, swirl particle heading too
         p.advance_by(robbie.speed)
