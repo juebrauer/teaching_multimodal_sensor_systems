@@ -309,3 +309,5 @@ while True:
     for p in particles:
         p.h += d_h # in case robot changed heading, swirl particle heading too
         p.advance_by(robbie.speed)
+
+    input()

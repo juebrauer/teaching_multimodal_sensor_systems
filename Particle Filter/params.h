@@ -113,3 +113,7 @@
 // speed-up computation of continuous density
 // function by computing density only at each n-th position
 #define SPEED_UP_KDE_STEPSIZE 1
+
+
+// always compute & show particle clusters?
+#define ALWAYS_CLUSTER_PARTICLES 0

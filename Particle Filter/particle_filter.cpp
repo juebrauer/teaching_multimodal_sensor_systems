@@ -1,4 +1,5 @@
 #include "particle_filter.h"
+#include <omp.h>
 
 ///
 ///  generate a particle filter with
@@ -201,7 +202,8 @@ particle* particle_filter::sample_one_particle_according_to_importance_weight_pd
   // 2. to which particle does the interval segment belong
   //    in which this random number lies?
   int idx = -1;
-  for (unsigned int i = 0; i <= all_particles.size() - 1; i++)
+  #pragma omp parallel for
+  for (int i = 0; i <= all_particles.size() - 1; i++)
   {
     // 2.1 get next segment of partition of unit interval
     float a = segmentation_of_unit_interval[i];

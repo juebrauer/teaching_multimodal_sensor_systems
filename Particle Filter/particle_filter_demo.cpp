@@ -35,6 +35,7 @@
 #include <math.h>                 // for M_PI
 #include <time.h>
 
+
 #include "params.h"
 #include "spaceship.h"
 #include "mvnrnd.h"
@@ -330,9 +331,105 @@ Mat get_image_of_continuous_probability_distribution(particle_filter* pf)
 } // get_image_of_continuous_probability_distribution
 
 
+
+std::vector<Point2d> cluster(std::vector<particle*> all_particles)
+{
+    // here we cluster only in 2D image space (x,y),
+    // although the particles "live" in a 4D state space (x,y,vx,vy)
+
+    // 1. keep track of new clusters found
+    std::vector<Point2d> clusters_found;
+
+    // 2. do a mean shift trajectory for each particle
+    for (int pnr = 0; pnr < all_particles.size(); pnr++)
+    {
+        //if (pnr % 100 == 0)
+        //    printf("particle trajectories computed so far: %d\n", pnr);
+
+        // 2.1 get the particle
+        particle* p = all_particles[pnr];
+
+        // 2.2 get 2D image position of the particle
+        Point2d mean_pos(p->state[0], p->state[1]);
+
+        // 2.3 now shift the mean position until it does not move
+        //     any longer
+        double mean_shift_length;
+        do
+        {
+            Point2d new_mean_pos(0, 0);
+            double norm_factor = 0.0;
+            for (int pnr2 = 0; pnr2 < all_particles.size(); pnr2++)
+            {
+                // get the particle
+                particle* p2 = all_particles[pnr2];
+
+                // get 2D position of particle p2
+                Point2d p2_pos(p2->state[0], p2->state[1]);
+
+                // compute Kernel distance
+                double distance = norm(mean_pos - p2_pos);
+                double kernel_distance = 0.0;
+                if (distance < 50.0)
+                {
+                    kernel_distance = 50.0 - distance;
+                }
+
+                // get particle weight
+                double w = p2->weight;
+
+                // compute contribution to sum
+                Point2d contrib = kernel_distance * w * p2_pos;
+
+                // update sum
+                new_mean_pos += contrib;
+
+                // update normalization factor
+                norm_factor += kernel_distance * w;
+                
+            } // for (pnr2)
+            new_mean_pos /= norm_factor;
+
+            // compute distance between old mean pos
+            // and new mean pos
+            mean_shift_length = norm(mean_pos - new_mean_pos);
+
+            // update mean position
+            mean_pos = new_mean_pos;
+            
+        } while (mean_shift_length>1);
+
+        // 2.4 check whether the final mean position is similar
+        //     to a cluster center already generated
+        bool found = false;
+        for (int c = 0; c < clusters_found.size(); c++)
+        {
+            Point2d cluster_pos = clusters_found[c];
+            if (norm(cluster_pos - mean_pos) < 5)
+            {
+                found = true;
+                break;
+            }
+        } // for (all clusters so far)
+
+        // 2.5 make up a new cluster?
+        if (!found)
+        {
+            clusters_found.push_back( mean_pos );
+        }
+            
+    } // for (pnr)
+
+    printf("I have found %d clusters.\n", (unsigned int)clusters_found.size());
+
+    return clusters_found;
+
+} // cluster
+
+
 int main()
 {
-  srand(28011979);
+  srand((unsigned int)time(NULL));
 
   // 1. load background image
   //    image license is CC0 (public domain).
@@ -374,7 +471,7 @@ int main()
                                        0.0,  200.0, 0.0, 0.0,
                                        0.0,    0.0, 0.1, 0.0,
                                        0.0,    0.0, 0.0, 0.1);
-  cv::Mat mean_vec = (Mat_<float>(4, 1) << 0.0, 0.0);
+  cv::Mat mean_vec = (Mat_<float>(4, 1) << 0.0, 0.0, 0.0, 0.0);
   mvnrnd* rnd_generator_measurement_noise = new mvnrnd(mean_vec, R);
 
 
@@ -567,14 +664,32 @@ int main()
               get_image_of_continuous_probability_distribution(my_pf));
     }
 
-    // 13. show visualization image
+
+    // 14. user wants to cluster the particle population
+    if ((c == 'c') || (ALWAYS_CLUSTER_PARTICLES))
+        if (my_pf != NULL)
+        {
+            // compute clusters
+            vector<Point2d> clusters = cluster( my_pf->all_particles );
+
+            // show cluster centers as yellow circles
+            for (int i = 0; i < clusters.size(); i++)
+            {
+                circle(image, clusters[i],
+                        SPACESHIP_PART_SIZE_IN_PIXELS/2,
+                        CV_RGB(0, 0, 255), 2);
+            }
+        } // if (user wants to cluster particle population)
+
+
+    // 15. show visualization image
     char txt[500];
     sprintf_s(txt, "%04d", simulation_step);
     putText(image, txt, Point(image.cols-45, image.rows-10),
        FONT_HERSHEY_SIMPLEX, 0.5, CV_RGB(0,255,0), 1);
     imshow("Tracking an alien spaceship with a particle filter!", image);
 
-    // 14. time goes by...
+    // 16. time goes by...
     simulation_step++;
 
   } // while

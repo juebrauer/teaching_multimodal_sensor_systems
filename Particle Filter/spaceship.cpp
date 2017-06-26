@@ -84,7 +84,7 @@ void spaceship::move()
     }
 
     // 1.3 compute new motion vector for this part?
-    if (rand() % 750 == 0)
+    if (rand() % 250 == 0)
     {
       part_infos[part_nr]->move_vec = get_rnd_move_vec();
     }
