@@ -244,7 +244,7 @@ Mat get_image_of_continuous_probability_distribution(particle_filter* pf)
       W += pf->all_particles[particle_nr]->weight;
    } // for (particle_nr)
 
-   // 4. compute probability for each (x,y) position
+   // 5. compute probability for each (x,y) position
    printf("computing probability for each (x,y) position");   
    float max_prob = 0.0;
    for (int y = 0; y < h; y+= SPEED_UP_KDE_STEPSIZE)
@@ -252,7 +252,7 @@ Mat get_image_of_continuous_probability_distribution(particle_filter* pf)
       printf(".");
       for (int x = 0; x < w; x+= SPEED_UP_KDE_STEPSIZE)
       {
-         // 4.1 compute probability P(x,y)
+         // 5.1 compute probability P(x,y)
          float prob = 0.0f;
          for (int particle_nr = 0; particle_nr < N; particle_nr++)
          {
@@ -277,13 +277,14 @@ Mat get_image_of_continuous_probability_distribution(particle_filter* pf)
             prob += p->weight * kernel_value;
 
          } // for (particle_nr)
+         prob /= W;
 
-         // 4.2 later we need to know the max probability found
+         // 5.2 later we need to know the max probability found
          //     in order to normalize the values for drawing a heat map
          if (prob>max_prob)
             max_prob = prob;
 
-         // 4.3 store computed probability for that (x,y) position
+         // 5.3 store computed probability for that (x,y) position
          probs[y][x] = prob;
 
       } // for (x)
@@ -291,7 +292,7 @@ Mat get_image_of_continuous_probability_distribution(particle_filter* pf)
    printf("\n");
    //printf("max_prob = %.5f\n", max_prob);
 
-   // 5. normalize all values to be in [0,1]
+   // 6. normalize all values to be in [0,1]
    for (int y = 0; y < h; y+= SPEED_UP_KDE_STEPSIZE)
    {
       for (int x = 0; x < w; x+= SPEED_UP_KDE_STEPSIZE)
@@ -301,7 +302,7 @@ Mat get_image_of_continuous_probability_distribution(particle_filter* pf)
       } // for (x)
    } // for (y)
 
-   // 6. generate image from 2D probability array
+   // 7. generate image from 2D probability array
    Mat image_prob_distri(h / SPEED_UP_KDE_STEPSIZE,
                          w / SPEED_UP_KDE_STEPSIZE,
                          CV_8UC3);
@@ -322,10 +323,10 @@ Mat get_image_of_continuous_probability_distribution(particle_filter* pf)
    double elpased_time= (clock()-start_time) / CLOCKS_PER_SEC;
    printf("Time elpased for computing continuous density: %.2f sec", elpased_time);
 
-   // 7. free memory
+   // 8. free memory
    delete LUT_EXP;
 
-   // 8. image is ready! return it to caller
+   // 9. image is ready! return it to caller
    return image_prob_distri;
 
 } // get_image_of_continuous_probability_distribution
