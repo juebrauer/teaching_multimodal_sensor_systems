@@ -335,6 +335,8 @@ Mat get_image_of_continuous_probability_distribution(particle_filter* pf)
 
 std::vector<Point2d> cluster(std::vector<particle*> all_particles)
 {
+    clock_t start_time = clock();
+
     // here we cluster only in 2D image space (x,y),
     // although the particles "live" in a 4D state space (x,y,vx,vy)
 
@@ -342,6 +344,7 @@ std::vector<Point2d> cluster(std::vector<particle*> all_particles)
     std::vector<Point2d> clusters_found;
 
     // 2. do a mean shift trajectory for each particle
+    int counter_ms_updates = 0;
     for (int pnr = 0; pnr < all_particles.size(); pnr++)
     {
         //if (pnr % 100 == 0)
@@ -371,9 +374,9 @@ std::vector<Point2d> cluster(std::vector<particle*> all_particles)
                 // compute Kernel distance
                 double distance = norm(mean_pos - p2_pos);
                 double kernel_distance = 0.0;
-                if (distance < 50.0)
+                if (distance < CYLINDER_KERNEL_RADIUS)
                 {
-                    kernel_distance = 50.0 - distance;
+                    kernel_distance = CYLINDER_KERNEL_RADIUS - distance;
                 }
 
                 // get particle weight
@@ -397,8 +400,10 @@ std::vector<Point2d> cluster(std::vector<particle*> all_particles)
 
             // update mean position
             mean_pos = new_mean_pos;
+
+            counter_ms_updates++;
             
-        } while (mean_shift_length>1);
+        } while (mean_shift_length>CONVERGENCE_THRESHOLD_MEAN_SHIFT_VEC_LEN);
 
         // 2.4 check whether the final mean position is similar
         //     to a cluster center already generated
@@ -406,7 +411,7 @@ std::vector<Point2d> cluster(std::vector<particle*> all_particles)
         for (int c = 0; c < clusters_found.size(); c++)
         {
             Point2d cluster_pos = clusters_found[c];
-            if (norm(cluster_pos - mean_pos) < 5)
+            if (norm(cluster_pos - mean_pos) < TOLERANCE_CLUSTER_BUILDING)
             {
                 found = true;
                 break;
@@ -421,7 +426,12 @@ std::vector<Point2d> cluster(std::vector<particle*> all_particles)
             
     } // for (pnr)
 
-    printf("I have found %d clusters.\n", (unsigned int)clusters_found.size());
+    double elapsed_time = (double)(clock() - start_time) / CLOCKS_PER_SEC;
+   
+    printf("I have found %d clusters (%d mean shift updates, %.5f sec).\n",
+        (unsigned int)clusters_found.size(),
+        counter_ms_updates,
+        elapsed_time);
 
     return clusters_found;
 
@@ -659,11 +669,12 @@ int main()
     
     // 13. does the user want to generate a continous probability image based
     //     on the discrete particle positions?
-    if ((c == 'p') && (my_pf != NULL))
-    {
-       imshow("Continuous probability based on discrete particle positions",
-              get_image_of_continuous_probability_distribution(my_pf));
-    }
+    if (c == 'p')
+        if (my_pf != NULL)
+        {
+           imshow("Continuous probability based on discrete particle positions",
+                  get_image_of_continuous_probability_distribution(my_pf));
+        }
 
 
     // 14. user wants to cluster the particle population

@@ -51,7 +51,7 @@
 //
 
 // wait for key press after each simulation step?
-#define STEP_BY_STEP 1
+#define STEP_BY_STEP 0
 
 
 // important for keeping up diversity in population
@@ -108,12 +108,20 @@
 
 // speed-up computation of continuous density
 // using a LUT (look-up table) for exp() function values
-#define USE_LUT_FOR_EXP false
+#define USE_LUT_FOR_EXP true
 
 // speed-up computation of continuous density
 // function by computing density only at each n-th position
-#define SPEED_UP_KDE_STEPSIZE 1
+#define SPEED_UP_KDE_STEPSIZE 4
 
 
 // always compute & show particle clusters?
-#define ALWAYS_CLUSTER_PARTICLES 0
+#define ALWAYS_CLUSTER_PARTICLES 1
+
+
+// tolerance for cluster building
+#define TOLERANCE_CLUSTER_BUILDING 1
+
+#define CYLINDER_KERNEL_RADIUS 50
+
+#define CONVERGENCE_THRESHOLD_MEAN_SHIFT_VEC_LEN 1
