@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Crash Course CPP", "Crash Course CPP\Crash Course CPP.vcxproj", "{77C42E94-8E71-47A7-96FD-165BE1CF39D2}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PersonDetector", "PersonDetector\PersonDetector.vcxproj", "{07045DC0-6B39-474D-A82C-309372FF463F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PersonTracker", "PersonTracker\PersonTracker.vcxproj", "{175E833C-09FA-4266-8B21-CBA0005E218C}"
@@ -37,14 +35,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{77C42E94-8E71-47A7-96FD-165BE1CF39D2}.Debug|x64.ActiveCfg = Debug|x64
-		{77C42E94-8E71-47A7-96FD-165BE1CF39D2}.Debug|x64.Build.0 = Debug|x64
-		{77C42E94-8E71-47A7-96FD-165BE1CF39D2}.Debug|x86.ActiveCfg = Debug|Win32
-		{77C42E94-8E71-47A7-96FD-165BE1CF39D2}.Debug|x86.Build.0 = Debug|Win32
-		{77C42E94-8E71-47A7-96FD-165BE1CF39D2}.Release|x64.ActiveCfg = Release|x64
-		{77C42E94-8E71-47A7-96FD-165BE1CF39D2}.Release|x64.Build.0 = Release|x64
-		{77C42E94-8E71-47A7-96FD-165BE1CF39D2}.Release|x86.ActiveCfg = Release|Win32
-		{77C42E94-8E71-47A7-96FD-165BE1CF39D2}.Release|x86.Build.0 = Release|Win32
 		{07045DC0-6B39-474D-A82C-309372FF463F}.Debug|x64.ActiveCfg = Debug|x64
 		{07045DC0-6B39-474D-A82C-309372FF463F}.Debug|x64.Build.0 = Debug|x64
 		{07045DC0-6B39-474D-A82C-309372FF463F}.Debug|x86.ActiveCfg = Debug|Win32
@@ -144,5 +134,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CA56F4B1-FE9C-415F-A2A4-7D879282A972}
 	EndGlobalSection
 EndGlobal
