@@ -46,7 +46,7 @@ print("test_Y=", test_Y)
 
 #hyperparameter
 learning_rate = 0.01
-training_epochs = 2000
+training_epochs = 4000
 display_steps = 200
 
 
@@ -96,7 +96,10 @@ with tf.Session() as sess:
     correct_pred = tf.equal(tf.argmax(test_result, 1), tf.argmax(test_Y, 1))
     #print("test_result=", test_result)
     accuracy = tf.reduce_mean(tf.cast(correct_pred, "float"))
-    print("Accuracy:", accuracy.eval({X: test_X, Y: test_Y}))
+    #print("Accuracy:", accuracy.eval({X: test_X, Y: test_Y}))
+
+    #print("Accuracy:", accuracy.eval())
+    print( "Accuracy: ", sess.run(accuracy) )
 
 
 end_time = time.time()
