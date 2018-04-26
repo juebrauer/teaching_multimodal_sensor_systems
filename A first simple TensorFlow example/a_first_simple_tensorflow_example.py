@@ -17,6 +17,7 @@ print("data type:", type(x_data))
 
 # 1.2 now compute the y-points
 y_data = x_data * 1.2345 + 0.6789
+print("y_data:", y_data)
 
 # so now we have ground truth samples (x,y)
 # and the TF learner will have to estimate the line parameters
@@ -40,6 +41,7 @@ my_optimizer = tf.train.GradientDescentOptimizer(0.5)
 
 # 3.3 Tell the optimizer object to minimize the loss function
 train = my_optimizer.minimize(loss_func)
+
 
 # 4. Before starting, we have to initialize the variables
 init = tf.global_variables_initializer()
