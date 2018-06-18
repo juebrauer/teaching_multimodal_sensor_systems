@@ -101,31 +101,31 @@ public:
    void                  update();
   
 
-   bool									  start_locations_initalized;
+   bool									     start_locations_initalized;
 
    particle_filter_update_model*		  your_prediction_model;
 
    particle_filter_update_model*		  your_perception_model;
 
-   std::vector<particle*>	              all_particles;
+   std::vector<particle*>	           all_particles;
 
-   int									  population_size;
+   int									     population_size;
  
-   int									  state_space_dimension;
+   int									     state_space_dimension;
 
-   float*								  min_values;
+   float*								     min_values;
 
-   float*								  max_values;
+   float*								     max_values;
 
-   float*							      range_sizes;
+   float*							        range_sizes;
 
-   float*							      segmentation_of_unit_interval;	
+   float*							        segmentation_of_unit_interval;	
 
-   int									  nr_update_steps_done;
+   int									     nr_update_steps_done;
 
-   particle*						      particle_with_highest_weight;
+   particle*						        particle_with_highest_weight;
 
-   void*								  ptr_user_data;
+   void*								        ptr_user_data;
 
 
 }; // particle_filter

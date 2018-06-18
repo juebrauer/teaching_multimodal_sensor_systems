@@ -31,23 +31,9 @@ spaceship::spaceship(int nr_of_parts, Size world_size)
 
 Point spaceship::get_rnd_move_vec()
 {
-  //int rnd_nr = rand() % 6;
-  //if ((rnd_nr==0) || (rnd_nr==1)) // with 2/6 prob we choose a random motion vector
-  {
-    int rnd_x = rand() % 3 - 1; // -1,0,+1
-    int rnd_y = rand() % 3 - 1; // -1,0,+1
-    return Point(rnd_x, rnd_y);
-  };
-  /*
-  else if ((rnd_nr == 2) || (rnd_nr == 3))
-  {
-    return Point(0, 1); // with 2/6 prob we choose the land vector
-  }
-  else
-  {
-    return Point(0, -1); // with 2/6 prob we choose the lift off vector
-  }
-  */
+   int rnd_x = rand() % 3 - 1; // -1,0,+1
+   int rnd_y = rand() % 3 - 1; // -1,0,+1
+   return Point(rnd_x, rnd_y);
 
 } // get_rnd_move_vec
 

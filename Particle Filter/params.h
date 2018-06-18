@@ -23,11 +23,11 @@
 //    noisy measurements can help to estimate state vectors!
 //   
 //    Even in situations where we have two times more wrong than correct
-//    (= : noisy, but near to real pacehship parts) measurements,
+//    (= : noisy, but near to real spaceship parts) measurements,
 //    the particle filter algorithm allows us to estimate the spaceship
 //    locations!
 //
-//    An important question is : why is this possible ?
+//    An important question is : why is this possible?
 //    It is the interplay between the prediction and the
 //    correction-by-measurement step and the more consistent behavior
 //    of measurements near to real spaceship parts:
@@ -89,6 +89,7 @@
 #define MOVE_TO_MEASUREMENT_SPEED 0.05f
 
 
+
 // do prediction step?
 #define DO_PREDICTION_STEP true
 
@@ -116,7 +117,7 @@
 
 
 // always compute & show particle clusters?
-#define ALWAYS_CLUSTER_PARTICLES 1
+#define ALWAYS_CLUSTER_PARTICLES 0
 
 
 // tolerance for cluster building

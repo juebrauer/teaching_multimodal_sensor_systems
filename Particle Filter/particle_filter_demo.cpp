@@ -82,6 +82,8 @@ class update_by_prediction_model : particle_filter_update_model
        y  += get_rnd_from_interval(-5.0f, 5.0f);
        vx += get_rnd_from_interval(-0.1f, 0.1f);
        vy += get_rnd_from_interval(-0.1f, 0.1f);
+       //vx += get_rnd_from_interval(-5.0f, 5.0f);
+       //vy += get_rnd_from_interval(-5.0f, 5.0f);
     }
 
     // add noise to predicted particle position &
@@ -613,8 +615,14 @@ int main()
         
 
     // 10. do one particle filter update step
+    int time_needed = 0;
     if (my_pf != NULL)
-      my_pf->update();
+    {
+       int64 start_time = getTickCount();
+       my_pf->update();
+       time_needed = (int)
+          ((getTickCount() - start_time) * 1000.0/ cv::getTickFrequency());
+    }
 
 
     // 11. if the user wants to track the spaceship,
@@ -696,8 +704,8 @@ int main()
 
     // 15. show visualization image
     char txt[500];
-    sprintf_s(txt, "%04d", simulation_step);
-    putText(image, txt, Point(image.cols-45, image.rows-10),
+    sprintf_s(txt, "%04d (%d ms)", simulation_step, time_needed);
+    putText(image, txt, Point(image.cols-120, image.rows-10),
        FONT_HERSHEY_SIMPLEX, 0.5, CV_RGB(0,255,0), 1);
     imshow("Tracking an alien spaceship with a particle filter!", image);
 

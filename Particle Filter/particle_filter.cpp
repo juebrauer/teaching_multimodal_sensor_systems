@@ -202,7 +202,6 @@ particle* particle_filter::sample_one_particle_according_to_importance_weight_pd
   // 2. to which particle does the interval segment belong
   //    in which this random number lies?
   int idx = -1;
-  #pragma omp parallel for
   for (int i = 0; i <= all_particles.size() - 1; i++)
   {
     // 2.1 get next segment of partition of unit interval
@@ -274,7 +273,8 @@ void particle_filter::update()
 
 
   // 3. update each particle
-  for (unsigned int i = 0; i<all_particles.size(); i++)
+  #pragma omp parallel for
+  for (int i = 0; i<all_particles.size(); i++)
   {
     // 3.1 get next particle
     particle* p = all_particles[i];
