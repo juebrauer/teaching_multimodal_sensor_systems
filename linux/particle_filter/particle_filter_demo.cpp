@@ -500,6 +500,7 @@ int main()
 
   // 7. the simulation loop:
   int simulation_step = 0;
+  bool show_space_ship = false;
   while (true)
   {
     // 7.1 clear screen & visualization image
@@ -517,17 +518,13 @@ int main()
     alien_spaceship.move();
 
 
-    // 7.4 draw alien spaceship into image
-    alien_spaceship.draw_yourself_into_this_image( image );
+    // 7.4 simulate noisy measurements
 
-
-    // 7.5 simulate noisy measurements
-
-    // 7.5.1 clear measurement vector
+    // 7.4.1 clear measurement vector
     measurements.clear();
 
 
-    // 7.5.2 add a noisy measurement near to each part
+    // 7.4.2 add a noisy measurement near to each part
     vector<spaceship::part_info*> part_infos = alien_spaceship.get_part_info_vector();    
     for (unsigned int part_nr = 0; part_nr < part_infos.size(); part_nr++)
     {
@@ -551,7 +548,7 @@ int main()
     } // for (part_nr)
 
 
-    // 7.5.3 add some wrong measurements from time to time
+    // 7.4.2 add some wrong measurements from time to time
     if (SIMULATE_COMPLETELY_WRONG_MEASUREMENTS)
     {
       bool always_generate_wrong_measurements = true;
@@ -571,7 +568,7 @@ int main()
     } // if (add some wrong measurement)
 
 
-    // 7.5.4 test relocation speed of particles?
+    // 7.4.3 test relocation speed of particles?
     // for testing the relocation of particles
     // using the RESAMPLING method
     // after measurements do not show up
@@ -697,14 +694,28 @@ int main()
         } // if (user wants to cluster particle population)
 
 
-    // 15. show visualization image
+
+    // 15. user wants to turn on/off visualization of alien space ship
+    if (c=='s')
+    {
+      show_space_ship = !show_space_ship;
+    }
+
+    // 16. draw alien spaceship into image?
+    if (show_space_ship)
+      alien_spaceship.draw_yourself_into_this_image( image );
+
+
+
+    // 17. show visualization image
     char txt[500];
     sprintf(txt, "%04d (%d ms)", simulation_step, time_needed);
     putText(image, txt, Point(image.cols-120, image.rows-10),
        FONT_HERSHEY_SIMPLEX, 0.5, CV_RGB(0,255,0), 1);
     imshow("Tracking an alien spaceship with a particle filter!", image);
 
-    // 16. time goes by...
+
+    // 18. time goes by...
     simulation_step++;
 
   } // while
