@@ -80,6 +80,10 @@
 // how many parts has the spacehship?
 #define NR_SPACESHIP_PARTS 5
 
+
+// teleport spaceships?
+#define SPACE_SHIPS_CAN_TELEPORT false
+
 // size of a single spaceship square
 #define SPACESHIP_PART_SIZE_IN_PIXELS 30
 

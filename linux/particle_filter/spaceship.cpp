@@ -47,14 +47,15 @@ void spaceship::move()
     // 1.1 move part
     part_infos[part_nr]->location += part_infos[part_nr]->move_vec;
 
-    // Damn! TELEPORT!
-    if (rand() % 50 == 0)
+    // 1.2 teleport?
+    if ((SPACE_SHIPS_CAN_TELEPORT) && (rand() % 100 == 0))
     {
       part_infos[part_nr]->location.x = rand() % world_size.width;
       part_infos[part_nr]->location.y = rand() % world_size.height;
     }
 
-    // 1.2 make sure, parts do not leave the 2D world
+
+    // 1.3 make sure, parts do not leave the 2D world
     if (part_infos[part_nr]->location.x - SPACESHIP_PART_SIZE_IN_PIXELS < 0)
     {
       part_infos[part_nr]->location.x = SPACESHIP_PART_SIZE_IN_PIXELS;
@@ -76,12 +77,11 @@ void spaceship::move()
       part_infos[part_nr]->move_vec.y = -1;
     }
 
-    // 1.3 compute new motion vector for this part?
+    // 1.4 compute new motion vector for this part?
     if (rand() % 250 == 0)
     {
-      part_infos[part_nr]->location = get_rnd_move_vec();
+      part_infos[part_nr]->move_vec = get_rnd_move_vec();
     }
-
     
 
   } // for (move all parts)
