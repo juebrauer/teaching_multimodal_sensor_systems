@@ -634,10 +634,10 @@ int main()
       // 11.3 initialize particle filter:
 
       // 11.4 set state space dimensions
-      my_pf->set_param_ranges(0, 0.0f, (float)image.cols);
-      my_pf->set_param_ranges(1, 0.0f, (float)image.rows);
-      my_pf->set_param_ranges(2, -1.0f, 1.0f);
-      my_pf->set_param_ranges(3, -1.0f, 1.0f);
+      my_pf->set_param_ranges(0, 0.0f, (float)image.cols); // x-position
+      my_pf->set_param_ranges(1, 0.0f, (float)image.rows); // y-position
+      my_pf->set_param_ranges(2, -1.0f, 1.0f);             // velocity x (vx)
+      my_pf->set_param_ranges(3, -1.0f, 1.0f);             // velocity y (vy)
 
       // 11.5 set motion & measurement model			
       my_pf->set_prediction_model((particle_filter_update_model*)my_update_by_prediction_model);

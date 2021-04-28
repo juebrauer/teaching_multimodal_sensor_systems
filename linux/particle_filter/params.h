@@ -60,7 +60,7 @@
 
 // how many measurements do we want to generate for one
 // spacehship part?
-#define NR_MEASUREMENTS_PER_SPACESHIP_PART 2
+#define NR_MEASUREMENTS_PER_SPACESHIP_PART 1
 
 // if switched on, we will not only generate
 // noisy measurements near to spaceship parts,

@@ -21,7 +21,7 @@
 ///     pdf represented by the importance weights
 ///
 /// ---
-/// by Prof. Dr. Jürgen Brauer, www.juergenbrauer.org
+/// by Prof. Dr. Jï¿½rgen Brauer, www.juergenbrauer.org
 
 #pragma once
 
